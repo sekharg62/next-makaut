@@ -6,6 +6,10 @@ import {
   MessageCircle,
   Globe,
   Heart,
+  GraduationCap,
+  Presentation,
+  Shield,
+  ExternalLink,
 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 
@@ -15,6 +19,29 @@ const exploreLinks = [
   { label: "Syllabus & Curriculum", href: "#subjects", icon: ListChecks },
   { label: "Discussion Forum", href: "#community", icon: MessageCircle },
 ];
+
+const portalRoles = [
+  {
+    label: "Student",
+    role: "student",
+    icon: GraduationCap,
+    description: "Notes, PYQs & exams",
+  },
+  {
+    label: "Teacher",
+    role: "teacher",
+    icon: Presentation,
+    description: "Upload & manage materials",
+  },
+  {
+    label: "Institute Admin",
+    role: "admin",
+    icon: Shield,
+    description: "Institute administration",
+  },
+] as const;
+
+const APP_PORTAL_URL = "https://app.makautstudents.help";
 
 export default function Footer() {
   return (
@@ -29,7 +56,7 @@ export default function Footer() {
               exam prep, and peer learning with no paywalls.
             </p>
             <a
-              href="https://makautstudents.help"
+              href="https://www.makautstudents.help"
               className="mt-4 inline-flex items-center gap-2 text-sm text-gold-glow/80 transition-colors hover:text-gold-glow"
             >
               <Globe className="h-4 w-4" />
@@ -73,6 +100,48 @@ export default function Footer() {
               </li>
               <li className="text-white/40">Not affiliated with MAKAUT</li>
             </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h3 className="font-display text-lg font-bold text-white">
+                Portal login
+              </h3>
+              <p className="mt-1 text-sm text-white/55">
+                Open your role portal on{" "}
+                <span className="text-gold-glow/90">app.makautstudents.help</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {portalRoles.map((portal) => (
+              <a
+                key={portal.role}
+                href={`${APP_PORTAL_URL}/${portal.role}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 transition-all hover:border-gold/40 hover:bg-gold/10"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/15 text-gold-glow ring-1 ring-gold/25 transition-colors group-hover:bg-gold/25">
+                  <portal.icon className="h-5 w-5" aria-hidden />
+                </span>
+                <span className="min-w-0 flex-1 text-left">
+                  <span className="flex items-center gap-1.5 text-sm font-semibold text-white">
+                    {portal.label}
+                    <ExternalLink
+                      className="h-3.5 w-3.5 text-white/35 transition-colors group-hover:text-gold-glow"
+                      aria-hidden
+                    />
+                  </span>
+                  <span className="mt-0.5 block text-xs text-white/45">
+                    {portal.description}
+                  </span>
+                </span>
+              </a>
+            ))}
           </div>
         </div>
 
