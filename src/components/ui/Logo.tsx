@@ -1,4 +1,4 @@
-import { GraduationCap } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 type LogoProps = {
@@ -13,16 +13,17 @@ export default function Logo({
   const isLight = variant === "light";
 
   return (
-    <Link href="/" className="group flex items-center gap-3">
-      <span
-        className={`flex h-10 w-10 items-center justify-center rounded-xl shadow-lg transition-transform group-hover:scale-105 ${
-          isLight
-            ? "bg-gradient-to-br from-gold to-accent text-surface-dark shadow-gold/20"
-            : "bg-gradient-to-br from-primary to-primary-light text-gold shadow-primary/30"
-        }`}
-      >
-        <GraduationCap className="h-5 w-5" strokeWidth={2.25} />
-      </span>
+    <Link href="/" className="group flex items-center gap-4">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl shadow-md transition-transform group-hover:scale-105">
+        <Image
+          src="/logo.png"
+          alt="MAKAUT Students Logo"
+          width={64}
+          height={64}
+          className="h-full w-full object-cover"
+          priority
+        />
+      </div>
       <div className="leading-tight">
         <span
           className={`font-display block text-sm font-bold tracking-tight sm:text-base ${
